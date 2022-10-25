@@ -1,5 +1,5 @@
 open class Point constructor (){
-    protected var name: String = ""
+    var name: String = ""
         set(value){
             field = if(value == ""){
                 print("Не установлено имя для точки с координатами ($xCoordinate; $yCoordinate)\n" +
@@ -14,7 +14,7 @@ open class Point constructor (){
                 field
             }
         }
-    protected var xCoordinate: Double = 0.0
+    var xCoordinate: Double = 0.0
         set(value){
             field = if(value> -1000 && value<1000) value
             else{
@@ -30,7 +30,7 @@ open class Point constructor (){
                 field
             }
         }
-    protected var yCoordinate: Double = 0.0
+    var yCoordinate: Double = 0.0
         set(value){
             field = if(value> -1000 && value<1000) value
             else{
@@ -55,4 +55,5 @@ open class Point constructor (){
     override fun toString() :String{
         return "Имя точки: $name \n Координаты: ($xCoordinate ; $yCoordinate)"
     }
+
 }

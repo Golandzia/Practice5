@@ -1,27 +1,30 @@
 open class Line constructor() : Point() {
-    protected var pointsCoordinate = mapOf<String, Double>("x1" to 0.0, "y1" to 0.0, "x2" to 0.0, "y2" to 0.0)
+    protected var pointsArray = mutableListOf<Point>()
         set(value) {
-            value.forEach { (key, valueInCycle) ->
-                if (valueInCycle < -1000.0 || valueInCycle > 1000.0)
-                    println("Для координаты $key прямой $name установено некорректное значение")
-                field = value
+            value.forEach{el->
+                if(el.xCoordinate>1000 || el.yCoordinate<-1000.0)
+                    println("Для одной из координат прямой $name установленно некоррекстное значение")
             }
+            field = value
         }
         get() {
-            field.forEach { (key, valueInCycle) ->
-                if (valueInCycle < -1000.0 || valueInCycle > 1000.0)
-                    println("Для координаты $key прямой $name установено некорректное значение")
+            field.forEach { el ->
+                if (el.xCoordinate > 1000 || el.yCoordinate < -1000.0)
+                    println("Для одной из координат прямой $name установленно некоррекстное значение")
             }
             return field
         }
 
     constructor(_name :String, _x1 :Double, _y1 :Double, _x2 :Double, _y2 :Double) :this(){
         name = _name
-        pointsCoordinate = mapOf("x1" to _x1, "y1" to _y1, "x2" to _x2, "y2" to _y2)
+        pointsArray[0].xCoordinate = _x1
+        pointsArray[0].yCoordinate = _y1
+        pointsArray[1].xCoordinate = _x2
+        pointsArray[1].yCoordinate = _y2
     }
 
     override fun toString(): String {
-        return "Имя прямой: $name\n Координаты: (${pointsCoordinate["x1"]} ; ${pointsCoordinate["y1"]}) " +
-                " (${pointsCoordinate["x2"]} ; ${pointsCoordinate["y2"]})"
+        return "Имя прямой - $name\nКоординаты: (${pointsArray[0].xCoordinate} ; ${pointsArray[0].yCoordinate}) " +
+                " (${pointsArray[1].xCoordinate} ; ${pointsArray[1].yCoordinate}"
     }
 }
