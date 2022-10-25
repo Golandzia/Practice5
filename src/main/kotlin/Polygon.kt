@@ -24,11 +24,17 @@ class Polygone constructor() : Line() {
         }
     }
 
-    override fun toString(): String {
-        var infoToOut :String = "Имя многоугольника: $name\n"
-        pointsArray.forEach { el->
-            infoToOut+= "Имя точки: ${el.name} (${el.xCoordinate} ; ${el.xCoordinate})\n"
-        }
+                override fun toString(): String {
+        var infoToOut :String = "Имя многоугольника: $name\n" +
+                "Координаты:\n" +
+                "(${pointsArray[0].xCoordinate} ; ${pointsArray[0].yCoordinate})\n" +
+                "(${pointsArray[1].xCoordinate} ; ${pointsArray[1].yCoordinate})\n" +
+                "(${pointsArray[2].xCoordinate} ; ${pointsArray[2].yCoordinate})\n" +
+                "(${pointsArray[3].xCoordinate} ; ${pointsArray[3].yCoordinate})\n"
+        //pointsArray.forEach { el->
+          //  infoToOut+= "Имя точки: ${el.name} (${el.xCoordinate} ; ${el.xCoordinate})\n"
+        //}
+
         return infoToOut
     }
     fun movePolygone(polygone: Polygone, directionOfTravel :DirectionOfTravels, PathLength :Double) :Polygone {
@@ -53,6 +59,34 @@ class Polygone constructor() : Line() {
             }
             DirectionOfTravels.LEFT -> {
                 polygone.pointsArray.forEach { el ->
+                    el.xCoordinate -= PathLength
+                }
+                return polygone
+            }
+            DirectionOfTravels.UP_LEFT -> {
+                polygone.pointsArray.forEach { el ->
+                    el.xCoordinate -= PathLength
+                    el.yCoordinate += PathLength
+                }
+                return polygone
+            }
+            DirectionOfTravels.UP_RIGHT -> {
+                polygone.pointsArray.forEach { el ->
+                    el.xCoordinate += PathLength
+                    el.yCoordinate += PathLength
+                }
+                return polygone
+            }
+            DirectionOfTravels.DOWN_RIGHT -> {
+                polygone.pointsArray.forEach { el ->
+                    el.xCoordinate += PathLength
+                    el.yCoordinate -= PathLength
+                }
+                return polygone
+            }
+            DirectionOfTravels.DOWN_LEFT -> {
+                polygone.pointsArray.forEach { el ->
+                    el.yCoordinate -= PathLength
                     el.xCoordinate -= PathLength
                 }
                 return polygone
